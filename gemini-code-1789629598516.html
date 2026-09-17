@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Interaktif: Hambatan Seri dan Paralel (PhET Simulation)</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #202124;
+            --border-color: #dadce0;
+            --success: #137333;
+            --success-bg: #e6f4ea;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #5f6368;
+            font-size: 14px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            background: #f1f3f4;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .metadata-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metadata-item label {
+            font-weight: 600;
+            display: block;
+            font-size: 13px;
+            color: #5f6368;
+        }
+
+        .metadata-item input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            font-size: 18px;
+            margin-top: 30px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p, li {
+            font-size: 15px;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 25px 0;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f1f3f4;
+            font-weight: 600;
+            color: #3c4043;
+        }
+
+        input.table-input {
+            width: 90%;
+            padding: 6px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            resize: vertical;
+            font-family: inherit;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 40px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #success-message {
+            display: none;
+            background-color: var(--success-bg);
+            color: var(--success);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>LKPD INTERAKTIF: RANGKAIAN LISTRIK SERI DAN PARALEL</h1>
+    <div class="subtitle">Mata Pelajaran: Fisika | Kelas XII | SMAN 1 Banuhampu</div>
+
+    <div class="metadata-grid">
+        <div class="metadata-item">
+            <label for="student-name">Nama Siswa:</label>
+            <input type="text" id="student-name" placeholder="Masukkan nama lengkap...">
+        </div>
+        <div class="metadata-item">
+            <label for="student-class">Kelas / Kelompok:</label>
+            <input type="text" id="student-class" placeholder="Contoh: XII IPA 1">
+        </div>
+        <div class="metadata-item">
+            <label for="student-date">Tanggal Praktikum:</label>
+            <input type="date" id="student-date">
+        </div>
+    </div>
+
+    <h2>A. Tujuan Pembelajaran</h2>
+    <ul>
+        <li>Memahami konsep dasar rangkaian listrik seri dan paralel.</li>
+        <li>Merangkai komponen listrik secara virtual menggunakan PhET Circuit Construction Kit: DC.</li>
+        <li>Mengukur besar arus, tegangan, dan hambatan pada rangkaian listrik sederhana.</li>
+        <li>Membandingkan hasil simulasi dengan teori rangkaian listrik.</li>
+    </ul>
+
+    <h2>B. Simulasi PhET Circuit Construction Kit: DC</h2>
+    <p>Gunakan simulasi interaktif di bawah ini untuk merangkai komponen (baterai, resistor, kabel, voltmeter, dan ammeter). Pilih mode <strong>Lab</strong> pada simulasi:</p>
+    
+    <div class="iframe-container">
+        <iframe src="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html?locale=in" allowfullscreen></iframe>
+    </div>
+
+    <h2>C. Langkah Kerja & Pengamatan</h2>
+
+    <h3>Aktivitas 1: Rangkaian Seri</h3>
+    <p>Buatlah rangkaian seri menggunakan 1 Baterai (9V), 2 Resistor (nilai berbeda), dan kabel penghubung. Ukurlah tegangan dan arus menggunakan alat ukur dalam simulasi.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Komponen</th>
+                <th>Tegangan (V)</th>
+                <th>Arus (A)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Resistor 1 (R₁)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Resistor 2 (R₂)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Total (Rangkaian)</strong></td>
+                <td><input type="text" class="table-input" placeholder="V Total..."></td>
+                <td><input type="text" class="table-input" placeholder="I Total..."></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Aktivitas 2: Rangkaian Paralel</h3>
+    <p>Ubah rangkaian menjadi bentuk paralel dengan komponen yang sama (1 Baterai 9V dan 2 Resistor). Ukur kembali tegangan dan arus pada tiap cabang dan total.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Komponen</th>
+                <th>Tegangan (V)</th>
+                <th>Arus (A)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Resistor 1 (R₁)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Resistor 2 (R₂)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Total (Rangkaian)</strong></td>
+                <td><input type="text" class="table-input" placeholder="V Total..."></td>
+                <td><input type="text" class="table-input" placeholder="I Total..."></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>D. Pertanyaan Reflektif & Analisis</h2>
+    
+    <label><strong>1. Apa perbedaan karakteristik tegangan dan arus listrik antara rangkaian seri dan rangkaian paralel berdasarkan hasil simulasi Anda?</strong></label>
+    <textarea placeholder="Tuliskan analisis perbedaan tegangan dan arus pada rangkaian seri dan paralel..."></textarea>
+
+    <label style="margin-top: 15px; display: block;"><strong>2. Bagaimana perbandingan nilai hambatan total (pengganti) pada rangkaian seri dan rangkaian paralel? Manakah yang lebih besar?</strong></label>
+    <textarea placeholder="Tuliskan analisis perbandingan hambatan total..."></textarea>
+
+    <label style="margin-top: 15px; display: block;"><strong>3. Apakah hasil pengukuran melalui simulasi PhET ini sudah sesuai dengan teori Hukum Ohm? Jelaskan kesimpulan Anda.</strong></label>
+    <textarea placeholder="Tuliskan kesimpulan dan perbandingan dengan teori..."></textarea>
+
+    <button class="btn-submit" onclick="submitLKPD()">Kirim / Selesaikan LKPD</button>
+    <div id="success-message">LKPD berhasil diselesaikan! Silakan tunjukkan hasil atau lakukan tangkapan layar (screenshot) kepada guru pengampu.</div>
+</div>
+
+<script>
+    function submitLKPD() {
+        const name = document.getElementById('student-name').value;
+        const studentClass = document.getElementById('student-class').value;
+        const date = document.getElementById('student-date').value;
+
+        if(!name || !studentClass || !date) {
+            alert('Mohon lengkapi Nama Siswa, Kelas, dan Tanggal Praktikum terlebih dahulu!');
+            return;
+        }
+        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+        document.getElementById('success-message').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
