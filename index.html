@@ -14,6 +14,7 @@
             --border-color: #dadce0;
             --success: #137333;
             --success-bg: #e6f4ea;
+            --upload-bg: #f8f9fa;
         }
 
         body {
@@ -150,6 +151,32 @@
             margin-top: 5px;
         }
 
+        .upload-box {
+            background: #f8f9fa;
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .upload-box input[type="file"] {
+            margin-top: 10px;
+        }
+
+        #preview-container {
+            margin-top: 15px;
+            max-width: 100%;
+            display: none;
+        }
+
+        #preview-img {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
         .btn-group {
             display: flex;
             gap: 15px;
@@ -207,7 +234,7 @@
                 padding: 10px;
                 max-width: 100%;
             }
-            .iframe-container, .btn-group, h2:nth-of-type(2) {
+            .iframe-container, .btn-group, h2:nth-of-type(2), .upload-box input[type="file"] {
                 display: none !important;
             }
             input, textarea {
@@ -215,6 +242,9 @@
                 border-bottom: 1px solid #000;
                 background: transparent;
                 resize: none;
+            }
+            #preview-container {
+                display: block !important;
             }
         }
     </style>
@@ -258,7 +288,7 @@
     <h2>C. Langkah Kerja & Pengamatan</h2>
 
     <h3>Aktivitas 1: Rangkaian Seri (3 Resistor)</h3>
-    <p>Buatlah rangkaian seri menggunakan 1 Baterai , <strong>3 Resistor</strong> dengan nilai berbeda, dan kabel penghubung. Ukurlah tegangan pada masing-masing resistor dan arus total rangkaian.</p>
+    <p>Buatlah rangkaian seri menggunakan 1 Baterai (9V), <strong>3 Resistor</strong> dengan nilai berbeda, dan kabel penghubung. Ukurlah tegangan pada masing-masing resistor dan arus total rangkaian.</p>
     <table>
         <thead>
             <tr>
@@ -292,7 +322,7 @@
     </table>
 
     <h3>Aktivitas 2: Rangkaian Paralel (3 Resistor)</h3>
-    <p>Ubah rangkaian menjadi bentuk paralel menggunakan 1 Baterai  dan <strong>3 Resistor</strong> yang disusun bercabang. Ukur tegangan tiap cabang serta arus pada masing-masing cabang dan arus total.</p>
+    <p>Ubah rangkaian menjadi bentuk paralel menggunakan 1 Baterai (9V) dan <strong>3 Resistor</strong> yang disusun bercabang. Ukur tegangan tiap cabang serta arus pada masing-masing cabang dan arus total.</p>
     <table>
         <thead>
             <tr>
@@ -336,15 +366,35 @@
     <label style="margin-top: 15px; display: block;"><strong>3. Apakah hasil pengukuran arus dan tegangan pada 3 resistor ini sesuai dengan perhitungan Hukum Ohm ($R = V / I$)? Jelaskan kesimpulan Anda.</strong></label>
     <textarea placeholder="Tuliskan kesimpulan dan perbandingan dengan teori..."></textarea>
 
+    <h2>E. Unggah Foto Perhitungan / Rumus Manual</h2>
+    <p>Unggah foto catatan atau perhitungan manual rumus Hukum Ohm dan hambatan total Anda (format JPG/PNG):</p>
+    <div class="upload-box">
+        <input type="file" id="calc-file" accept="image/*" onchange="previewImage(event)">
+        <div id="preview-container">
+            <p style="font-size: 13px; color: #5f6368; margin-bottom: 5px;">Pratinjau Foto Perhitungan:</p>
+            <img id="preview-img" src="" alt="Pratinjau Foto">
+        </div>
+    </div>
+
     <div class="btn-group">
         <button class="btn btn-submit" onclick="submitLKPD()">Kirim / Selesaikan</button>
         <button class="btn btn-pdf" onclick="saveToPDF()">🖨️ Simpan ke PDF / Print</button>
     </div>
     
-    <div id="success-message">LKPD berhasil diselesaikan! Anda sekarang dapat menekan tombol "Simpan ke PDF / Print" untuk menyimpan laporan praktikum Anda.</div>
+    <div id="success-message">LKPD berhasil diselesaikan! Anda sekarang dapat menekan tombol "Simpan ke PDF / Print" untuk menyimpan laporan praktikum lengkap dengan foto perhitungan Anda.</div>
 </div>
 
 <script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('preview-img');
+            output.src = reader.result;
+            document.getElementById('preview-container').style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
     function submitLKPD() {
         const name = document.getElementById('student-name').value;
         const studentClass = document.getElementById('student-class').value;
