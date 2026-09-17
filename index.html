@@ -150,23 +150,39 @@
             margin-top: 5px;
         }
 
-        .btn-submit {
-            display: block;
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            flex: 1;
             padding: 14px;
             font-size: 16px;
             font-weight: 600;
+            border: none;
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.2s;
-            margin-top: 40px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
         }
 
         .btn-submit:hover {
             background-color: var(--primary-dark);
+        }
+
+        .btn-pdf {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-pdf:hover {
+            background-color: #0d5023;
         }
 
         #success-message {
@@ -178,6 +194,28 @@
             text-align: center;
             font-weight: 600;
             margin-top: 20px;
+        }
+
+        /* Print Specific Styling to ensure clean PDF export */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 10px;
+                max-width: 100%;
+            }
+            .iframe-container, .btn-group, h2:nth-of-type(2) {
+                display: none !important;
+            }
+            input, textarea {
+                border: none;
+                border-bottom: 1px solid #000;
+                background: transparent;
+                resize: none;
+            }
         }
     </style>
 </head>
@@ -298,8 +336,12 @@
     <label style="margin-top: 15px; display: block;"><strong>3. Apakah hasil pengukuran arus dan tegangan pada 3 resistor ini sesuai dengan perhitungan Hukum Ohm ($R = V / I$)? Jelaskan kesimpulan Anda.</strong></label>
     <textarea placeholder="Tuliskan kesimpulan dan perbandingan dengan teori..."></textarea>
 
-    <button class="btn-submit" onclick="submitLKPD()">Kirim / Selesaikan LKPD</button>
-    <div id="success-message">LKPD berhasil diselesaikan! Silakan tunjukkan hasil atau lakukan tangkapan layar (screenshot) kepada guru pengampu.</div>
+    <div class="btn-group">
+        <button class="btn btn-submit" onclick="submitLKPD()">Kirim / Selesaikan</button>
+        <button class="btn btn-pdf" onclick="saveToPDF()">🖨️ Simpan ke PDF / Print</button>
+    </div>
+    
+    <div id="success-message">LKPD berhasil diselesaikan! Anda sekarang dapat menekan tombol "Simpan ke PDF / Print" untuk menyimpan laporan praktikum Anda.</div>
 </div>
 
 <script>
@@ -314,6 +356,18 @@
         }
         window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
         document.getElementById('success-message').style.display = 'block';
+    }
+
+    function saveToPDF() {
+        const name = document.getElementById('student-name').value;
+        const studentClass = document.getElementById('student-class').value;
+        const date = document.getElementById('student-date').value;
+
+        if(!name || !studentClass || !date) {
+            alert('Mohon lengkapi Nama Siswa, Kelas, dan Tanggal Praktikum sebelum menyimpan ke PDF!');
+            return;
+        }
+        window.print();
     }
 </script>
 
