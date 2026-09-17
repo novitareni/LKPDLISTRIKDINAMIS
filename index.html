@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKPD Interaktif: Hambatan Seri dan Paralel (PhET Simulation)</title>
+    <title>LKPD Interaktif: Hambatan Seri dan Paralel (3 Resistor)</title>
     <style>
         :root {
             --primary: #1a73e8;
@@ -204,14 +204,14 @@
 
     <h2>A. Tujuan Pembelajaran</h2>
     <ul>
-        <li>Memahami konsep dasar rangkaian listrik seri dan paralel.</li>
+        <li>Memahami konsep dasar rangkaian listrik seri dan paralel menggunakan 3 resistor.</li>
         <li>Merangkai komponen listrik secara virtual menggunakan PhET Circuit Construction Kit: DC.</li>
-        <li>Mengukur besar arus, tegangan, dan hambatan pada rangkaian listrik sederhana.</li>
-        <li>Membandingkan hasil simulasi dengan teori rangkaian listrik.</li>
+        <li>Mengukur besar arus, tegangan, dan hambatan pada rangkaian listrik dengan 3 resistor.</li>
+        <li>Membandingkan hasil simulasi pengukuran dengan perhitungan teori Hukum Ohm.</li>
     </ul>
 
     <h2>B. Simulasi PhET Circuit Construction Kit: DC</h2>
-    <p>Gunakan simulasi interaktif di bawah ini untuk merangkai komponen (baterai, resistor, kabel, voltmeter, dan ammeter). Pilih mode <strong>Lab</strong> pada simulasi:</p>
+    <p>Gunakan simulasi interaktif di bawah ini untuk merangkai komponen (baterai, 3 resistor, kabel, voltmeter, dan ammeter). Pilih mode <strong>Lab</strong> pada simulasi:</p>
     
     <div class="iframe-container">
         <iframe src="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html?locale=in" allowfullscreen></iframe>
@@ -219,8 +219,8 @@
 
     <h2>C. Langkah Kerja & Pengamatan</h2>
 
-    <h3>Aktivitas 1: Rangkaian Seri</h3>
-    <p>Buatlah rangkaian seri menggunakan 1 Baterai (9V), 2 Resistor (nilai berbeda), dan kabel penghubung. Ukurlah tegangan dan arus menggunakan alat ukur dalam simulasi.</p>
+    <h3>Aktivitas 1: Rangkaian Seri (3 Resistor)</h3>
+    <p>Buatlah rangkaian seri menggunakan 1 Baterai (9V), <strong>3 Resistor</strong> dengan nilai berbeda, dan kabel penghubung. Ukurlah tegangan pada masing-masing resistor dan arus total rangkaian.</p>
     <table>
         <thead>
             <tr>
@@ -237,6 +237,11 @@
             </tr>
             <tr>
                 <td><strong>Resistor 2 (R₂)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Resistor 3 (R₃)</strong></td>
                 <td><input type="text" class="table-input" placeholder="... Volt"></td>
                 <td><input type="text" class="table-input" placeholder="... Ampere"></td>
             </tr>
@@ -248,8 +253,8 @@
         </tbody>
     </table>
 
-    <h3>Aktivitas 2: Rangkaian Paralel</h3>
-    <p>Ubah rangkaian menjadi bentuk paralel dengan komponen yang sama (1 Baterai 9V dan 2 Resistor). Ukur kembali tegangan dan arus pada tiap cabang dan total.</p>
+    <h3>Aktivitas 2: Rangkaian Paralel (3 Resistor)</h3>
+    <p>Ubah rangkaian menjadi bentuk paralel menggunakan 1 Baterai (9V) dan <strong>3 Resistor</strong> yang disusun bercabang. Ukur tegangan tiap cabang serta arus pada masing-masing cabang dan arus total.</p>
     <table>
         <thead>
             <tr>
@@ -266,6 +271,11 @@
             </tr>
             <tr>
                 <td><strong>Resistor 2 (R₂)</strong></td>
+                <td><input type="text" class="table-input" placeholder="... Volt"></td>
+                <td><input type="text" class="table-input" placeholder="... Ampere"></td>
+            </tr>
+            <tr>
+                <td><strong>Resistor 3 (R₃)</strong></td>
                 <td><input type="text" class="table-input" placeholder="... Volt"></td>
                 <td><input type="text" class="table-input" placeholder="... Ampere"></td>
             </tr>
@@ -279,13 +289,13 @@
 
     <h2>D. Pertanyaan Reflektif & Analisis</h2>
     
-    <label><strong>1. Apa perbedaan karakteristik tegangan dan arus listrik antara rangkaian seri dan rangkaian paralel berdasarkan hasil simulasi Anda?</strong></label>
-    <textarea placeholder="Tuliskan analisis perbedaan tegangan dan arus pada rangkaian seri dan paralel..."></textarea>
+    <label><strong>1. Bagaimana karakteristik pembagian tegangan pada 3 resistor yang disusun secara seri dibandingkan dengan rangkaian paralel?</strong></label>
+    <textarea placeholder="Tuliskan analisis perbandingan tegangan pada 3 resistor seri dan paralel..."></textarea>
 
-    <label style="margin-top: 15px; display: block;"><strong>2. Bagaimana perbandingan nilai hambatan total (pengganti) pada rangkaian seri dan rangkaian paralel? Manakah yang lebih besar?</strong></label>
+    <label style="margin-top: 15px; display: block;"><strong>2. Bagaimana perbandingan nilai hambatan total (pengganti) ketika menggunakan 3 resistor pada rangkaian seri versus paralel?</strong></label>
     <textarea placeholder="Tuliskan analisis perbandingan hambatan total..."></textarea>
 
-    <label style="margin-top: 15px; display: block;"><strong>3. Apakah hasil pengukuran melalui simulasi PhET ini sudah sesuai dengan teori Hukum Ohm? Jelaskan kesimpulan Anda.</strong></label>
+    <label style="margin-top: 15px; display: block;"><strong>3. Apakah hasil pengukuran arus dan tegangan pada 3 resistor ini sesuai dengan perhitungan Hukum Ohm ($R = V / I$)? Jelaskan kesimpulan Anda.</strong></label>
     <textarea placeholder="Tuliskan kesimpulan dan perbandingan dengan teori..."></textarea>
 
     <button class="btn-submit" onclick="submitLKPD()">Kirim / Selesaikan LKPD</button>
